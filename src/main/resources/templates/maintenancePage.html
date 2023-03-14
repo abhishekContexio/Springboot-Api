@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
+<title>Index.com</title>
+</head>
+<body>
+<h1>Registration page</h1>
+<form method="post" action="">
+    Name:
+    <input type="text" name="name" id="name"> <br> <br>
+    Age:
+    <input type="text" name="age"> <br> <br>
+    Email:
+    <input type="text" name="email"> <br> <br>
+    Password:
+    <input type="password" name="password"> <br> <br>
+
+    <button type="button" onclick="SubmitForm()"> Submit</button>
+</form>
+<script type="text/javascript">
+    function SubmitForm()
+    {
+    	 var name = $('input[name=name]').val();
+         var age = $('input[name=age]').val();
+         var email = $('input[name=email]').val();
+         var password = $('input[name=password]').val();
+         
+    	console.log("function is getting called");
+    	
+    	$.ajax({
+    		url: "/addUserdetails",
+            type: "post",
+            data:{name:name,age:age, email:email, password:password},
+            success : function(response){
+           		alert("request was made sucessfully");
+            },
+            error: (error) => {
+                console.log(JSON.stringify(error));
+}
+    	});
+    }
+
+</script>
+</body>
+</html>
